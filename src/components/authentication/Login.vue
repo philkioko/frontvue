@@ -40,55 +40,53 @@
 </template>
 
 <script>
-import Navbar from "../Navbar.vue" 
-	export default{
+import Navbar from "../Navbar.vue";
+
+export default {
     components:{
-    'Navbar' : Navbar,
-  },
-  data (){
-    return {
-      email: '',
-      password: ''
-    }
-  },
+        'Navbar' : Navbar,
+    },
+
+    data() {
+        return { email: '', password: '' };
+    },
   
-  methods: {
-    login(){
-      var data= {
-        client_id: 2,
-        client_secret: '8pc5P0QVGQZeTsGFlVNzx474trn8b540tPb3q0wy',
-        grant_type: 'password',
-        username:this.email,
-        password:this.password
-      }
-      this.$http.post("oauth/token", data)
-      .then(response=>{
-        this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
-        this.$router.push('/backend')
-                                              
-        //  var role_id="2";
-        // this.$auth.setRoles(role_id)
+    methods: {
+        login() {
+            var data= {
+                client_id: 2,
+                client_secret: '0H9B7WgqtUOnwtLShL7ITNSy0kwPM1ckUioDXF99',
+                grant_type: 'password',
+                username: this.email,
+                password: this.password
+            };
 
-        // var Roleid       =localStorage.getItem('roleid');
-        // if (Roleid=='1') {
-        //   console.log("welcome admin");
-        //      //this.$router.push('/backend')
-        //    }else if (Roleid=="2") {
-        //     console.log("welcome client");
-        //    }
+            this.$http.post("oauth/token", data)
+                .then(response => {
+                    this.$router.push('/backend')
+                                                  
+                    //  var role_id="2";
+                    // this.$auth.setRoles(role_id)
 
-        //insert roles in local storage by gettting roles
-        // this.$http.get('api/userRoles')
-        //  .then(response => {
-        //   //insert roles in localstorage//
-        //   this.$auth.setRoles(response.body.role_id)
+                    // var Roleid       =localStorage.getItem('roleid');
+                    // if (Roleid=='1') {
+                    //   console.log("welcome admin");
+                    //      //this.$router.push('/backend')
+                    //    }else if (Roleid=="2") {
+                    //     console.log("welcome client");
+                    //    }
 
-        //  })
-      })
-    
+                    //insert roles in local storage by gettting roles
+                    // this.$http.get('api/userRoles')
+                    //  .then(response => {
+                    //   //insert roles in localstorage//
+                    //   this.$auth.setRoles(response.body.role_id)
+
+                    //  })
+                });
+        }
     }
-  }
-}
+};
 </script>
 
 <style>
